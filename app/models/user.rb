@@ -2,7 +2,7 @@
 
 class User < ActiveRecord::Base
   has_secure_password
-
+  has_many :articles , dependent: :destroy
   validates :password_confirmation, presence: true, on: :create
   validates :password, confirmation: true, presence: true,
                        length: { minimum: 8 }, on: :create

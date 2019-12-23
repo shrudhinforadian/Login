@@ -1,9 +1,9 @@
-<%= link_to 'New', new_article_path %>
+
 <table>
   <tr>
     <th>Title</th>
     <th>Text</th>
-    <th colspan="2"></th>
+    <th colspan="3">Options</th>
   </tr>
 
   <% @articles.each do |article| %>
@@ -17,3 +17,7 @@
     </tr>
   <% end %>
 </table>
+<br>
+<div class="link_new_article">
+<%= link_to 'Add New Article', new_article_path %>
+</div>

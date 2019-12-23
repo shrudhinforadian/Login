@@ -1,4 +1,7 @@
-<%= form_with scope: :article, url: articles_path, local: true do |form| %>
+<div class="new_article">
+<h1>New article</h1>
+</div>
+<%= form_with model: @article, local: true do |form| %>
 
 <% if @article.errors.any? %>
   <div id="error_explanation">
@@ -13,23 +16,23 @@
     </ul>
   </div>
 <% end %>
-
-<p>
-  <%= form.label :title %><br>
-  <%= form.text_field :title %>
+<div class="new_articles">
+<p >
+  <%= form.label :title %>
+  <%= form.text_field :title ,:class=>"input_title"%>
 </p>
 
 <p>
   <%= form.label :text %><br>
-  <%= form.text_area :text %>
+  <%= form.text_area :text ,:id => "mytextarea"%>
 </p>
 
 <p>
   <%= form.submit %>
 </p>
-
+</div>
 <% end %>
 
-<h1>New article</h1>
+
 
 <%= link_to 'Back', articles_path %>

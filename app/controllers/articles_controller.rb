@@ -5,23 +5,29 @@ class ArticlesController < ApplicationController
 
 before_action :authorize
   def index
-    @articles = Article.all
+    @user = User.find(session[:user_id])
+    @articles = @user.articles.all
   end
 
   def show
-    @article = Article.find(params[:id])
+    @user = User.find(session[:user_id])
+    @article = @user.articles.find(params[:id])
   end
 
   def new
-    @article = Article.new
+    @user = User.find(session[:user_id])
+    @article = @user.articles.new
   end
 
   def edit
-    @article = Article.find(params[:id])
+    @user = User.find(session[:user_id])
+    @article = @user.articles.find_by(params[:id])
   end
 
   def create
-    @article = Article.new(article_params)
+    @user = User.find(session[:user_id])
+    @article = @user.articles.create(article_params)
+    # @article = Article.new(article_params)
 
     if @article.save
       redirect_to @article
@@ -31,7 +37,8 @@ before_action :authorize
   end
 
   def update
-    @article = Article.find(params[:id])
+    @user = User.find(session[:user_id])
+    @article = @user.articles.find_by(params[:id])
 
     if @article.update(article_params)
       redirect_to @article
@@ -41,7 +48,8 @@ before_action :authorize
   end
 
   def destroy
-    @article = Article.find(params[:id])
+    @user = User.find(session[:user_id])
+    @article = @user.articles.find(params[:id])
     @article.destroy
 
     redirect_to articles_path
@@ -50,6 +58,6 @@ before_action :authorize
   private
 
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title, :text ,:user_id)
   end
 end

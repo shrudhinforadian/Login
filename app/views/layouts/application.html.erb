@@ -1,28 +1,44 @@
 <!DOCTYPE html>
+
+
+<%url=Rails.application.routes.recognize_path(request.referrer)%>
 <html>
   <head>
     <title>Blog</title>
-    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= stylesheet_link_tag "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
+    <script src="https://cdn.tiny.cloud/1/v4qiu77vllo203hcz04av8jxkqq763tq7vl5yeoh1d9wfrss/tinymce/5/tinymce.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <script>
+          tinymce.init({
+            selector: '#mytextarea'
+          });
+        </script>
   </head>
   <body>
     <div id="container">
       <div id="user_header">
-        <% if current_user %>
-          Logged in as <%= current_user.email %>.
+
+        <%if current_user  && (url[:controller] == "sessions" || url[:controller] == "users")%>
+        <% %>
+
+          <% elsif   current_user%>
+
+          <%= current_user.email %>
           <%= link_to "Log Out", logout_path %>
-        <% else %>
-          <%= link_to "Sign Up", signup_path %> or
-          <%= link_to "Log In", login_path %>
+          <% else %>
+            <%= link_to "Sign Up", signup_path %>
+            or
+            <%= link_to "Log In", login_path %>
+          <% end %>
+        </div>
+
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, id: "flash_#{name}" %>
         <% end %>
+
+        <%= yield %>
       </div>
-
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, id: "flash_#{name}" %>
-      <% end %>
-
-      <%= yield %>
-    </div>
-  </body>
-</html>
+    </body>
+  </html>
