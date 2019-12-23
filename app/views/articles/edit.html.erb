@@ -1,5 +1,5 @@
 <div class="edit_articles">
-<h1>Edit article</h1>
+  <h1>Edit article</h1>
 
 </div>
 
@@ -20,22 +20,20 @@
 <% end %>
 <!-- <h1>Edit article</h1> -->
 <div class="edit_article">
-<p >
-  <%= form.label :title %>
-  <%= form.text_field :title ,:class=>"input_title"%>
-</p>
+  <p >
+    <%= form.label :title %>
+    <%= form.text_field :title ,:class=>"input_title"%>
+  </p>
 
-<p>
-  <%= form.label :text %><br>
-  <%= form.text_area :text ,:id => "mytextarea"%>
-</p>
+  <p>
+    <%= form.label :text %><br>
+    <%= form.text_area :text ,:id => "mytextarea"%>
+  </p>
 
-<p>
-  <%= form.submit %>
-</p>
+  <p>
+    <%= form.submit %>
+  </p>
 </div>
 <% end %>
-
-
 
 <%= link_to 'Back', articles_path %>

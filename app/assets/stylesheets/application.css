@@ -17,13 +17,14 @@
    text-align: center;
    -webkit-align-items: center;
 } */
-*{
+* {
   font-family: 'Roboto', sans-serif;
-
 }
-#flash_notice{
+
+#flash_notice {
   color: :lightgreen;
 }
-#user_header{
+
+#user_header {
   color: lightgreen;
 }

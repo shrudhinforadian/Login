@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class ArticlesController < ApplicationController
-
-
-before_action :authorize
+  before_action :authorize
   def index
     @user = User.find(session[:user_id])
     @articles = @user.articles.all
@@ -58,6 +56,6 @@ before_action :authorize
   private
 
   def article_params
-    params.require(:article).permit(:title, :text ,:user_id)
+    params.require(:article).permit(:title, :text, :user_id)
   end
 end

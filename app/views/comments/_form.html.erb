@@ -1,23 +1,23 @@
 <div class="add_comment">
-<%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
-<div class="comment_section">
-  <div class="commenter">
-    <div>
-  <%= form.label :commenter     %>:
-  <%= form.text_field :commenter ,:class=>"comment_content" %>
-  </div>
-  </div>
+  <%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
+  <div class="comment_section">
+    <div class="commenter">
+      <div>
+        <%= form.label :commenter %>:
+        <%= form.text_field :commenter ,:class=>"comment_content" %>
+      </div>
+    </div>
 
-  <div class="comment_body">
-    <div>
-  <%= form.label :body %>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= form.text_field :body ,:class=>"comment_content" %>
-  </div>
-  </div>
+    <div class="comment_body">
+      <div>
+        <%= form.label :body %>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= form.text_field :body ,:class=>"comment_content" %>
+      </div>
+    </div>
   </div>
   <br>
-<div>
-  <%= form.submit %>
-</div>
+  <div>
+    <%= form.submit %>
+  </div>
 <% end %>
 </div>
