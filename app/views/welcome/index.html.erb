@@ -1,8 +1,14 @@
-<div>
-  <h1 align="center">Hello,
-    <%= current_user.email %></h1>
-  <p align="center">
-    <%= link_to 'My Blog', controller: 'articles' %>
-    <%= link_to 'New', new_article_path %>
-  </p>
+<div class="jumbotron  card-body text-center">
+  <div class="container ">
+  <h1 class=" ">Hello,
+    <%= @current_user.email %></h1></div>
+
+</div>
+<nav class="navbar>
+<div class="collapse navbar-collapse" id="myNavbar">
+<ul class="nav navbar-nav">
+<li><%= link_to 'My Blog', controller: 'articles' ,:class => "card-link" %></li>
+<li><%= link_to 'New', new_article_path ,:class => "card-link " %></li>
+</ul>
+</nav>
 </div>

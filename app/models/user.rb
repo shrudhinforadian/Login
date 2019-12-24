@@ -2,6 +2,7 @@
 
 class User < ActiveRecord::Base
   has_secure_password
+    scope :user, -> (id) { where(id: id) }
   has_many :articles , dependent: :destroy
   validates :password_confirmation, presence: true, on: :create
   validates :password, confirmation: true, presence: true,

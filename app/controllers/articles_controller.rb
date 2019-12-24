@@ -1,32 +1,26 @@
 # frozen_string_literal: true
 
 class ArticlesController < ApplicationController
+
   before_action :authorize
   def index
-    @user = User.find(session[:user_id])
-    @articles = @user.articles.all
+    @articles = @current_user.articles.all
   end
 
   def show
-    @user = User.find(session[:user_id])
-    @article = @user.articles.find(params[:id])
+    @article = @current_user.articles.find(params[:id])
   end
 
   def new
-    @user = User.find(session[:user_id])
-    @article = @user.articles.new
+    @article = @current_user.articles.new
   end
 
   def edit
-    @user = User.find(session[:user_id])
-    @article = @user.articles.find_by(params[:id])
+    @article = @current_user.articles.find_by(params[:id])
   end
 
   def create
-    @user = User.find(session[:user_id])
-    @article = @user.articles.create(article_params)
-    # @article = Article.new(article_params)
-
+    @article = @current_user.articles.create(article_params)
     if @article.save
       redirect_to @article
     else
@@ -35,8 +29,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @user = User.find(session[:user_id])
-    @article = @user.articles.find_by(params[:id])
+    @article = @current_user.articles.find_by(params[:id])
 
     if @article.update(article_params)
       redirect_to @article
@@ -46,8 +39,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @user = User.find(session[:user_id])
-    @article = @user.articles.find(params[:id])
+    @article = @current_user.articles.find(params[:id])
     @article.destroy
 
     redirect_to articles_path

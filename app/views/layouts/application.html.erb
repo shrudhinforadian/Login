@@ -4,7 +4,7 @@
   <html>
     <head>
       <title>Blog</title>
-      <%= stylesheet_link_tag "application", media: "all" %>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <%= javascript_include_tag "application" %>
       <%= csrf_meta_tag %>
       <script src="https://cdn.tiny.cloud/1/v4qiu77vllo203hcz04av8jxkqq763tq7vl5yeoh1d9wfrss/tinymce/5/tinymce.min.js"></script>
@@ -16,13 +16,12 @@
     <body>
       <div id="container">
         <div id="user_header">
+          <%if @current_user  && (url[:controller] == "sessions" || url[:controller] == "users")%>
 
-          <%if current_user  && (url[:controller] == "sessions" || url[:controller] == "users")%>
-            <% %>
 
-              <% elsif   current_user%>
+              <% elsif   @current_user%>
 
-                <%= current_user.email %>
+                <%= @current_user.email %>
                 <%= link_to "Log Out", logout_path %>
               <% else %>
                 <%= link_to "Sign Up", signup_path %>
