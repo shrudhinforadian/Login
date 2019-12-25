@@ -12,9 +12,16 @@ Rails.application.routes.draw do
   resources :articles
   resources :articles do
   resources :comments
+end
 
 resources :users do
   resources :articles
+
+
 end
-end
+resources :users do
+    member do
+      get :confirm_email
+    end
+  end
 end
