@@ -9,10 +9,13 @@ class SessionsController < ApplicationController
   end
 
   def create
+    flash.now[:error] = "hello world"
+
       user = User.find_by_email(params[:email].downcase)
       if user && user.authenticate(params[:password])
       if user.email_confirmed
-          welcome_index_path
+        session[:user_id] = user.id
+        redirect_to :"welcome_index", notice: "Logged in!"
       else
         flash.now[:error] = 'Please activate your account by following the
         instructions in the account confirmation email you received to proceed'

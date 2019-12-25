@@ -10,6 +10,9 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports.
+  config.action_mailer.raise_delivery_errors = true
+config.action_mailer.perform_deliveries = true
+config.action_mailer.delivery_method = :smtp
   config.consider_all_requests_local = true
   config.active_storage.service = :local
   config.default_url_options = { host: "localhost:3000" }

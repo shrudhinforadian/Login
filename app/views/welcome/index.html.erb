@@ -4,11 +4,22 @@
     <%= @current_user.email %></h1></div>
 
 </div>
-<nav class="navbar>
-<div class="collapse navbar-collapse" id="myNavbar">
-<ul class="nav navbar-nav">
-<li><%= link_to 'My Blog', controller: 'articles' ,:class => "card-link" %></li>
-<li><%= link_to 'New', new_article_path ,:class => "card-link " %></li>
-</ul>
+<nav class="navbar inverse collapse navbar-collapse card-body container ">
+<!-- <div class="collapse navbar-collapse text-center" id="myNavbar"> -->
+
+
+
 </nav>
-</div>
+<!-- </div> -->
+
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to 'My Blog', user_articles_path(session[:user_id]) ,:class => "navbar-brand" %>
+    </div>
+    <div class="navbar-header">
+      <%= link_to 'New', new_article_path ,:class => "navbar-brand " %>
+    </div>
+  </div>
+</nav>

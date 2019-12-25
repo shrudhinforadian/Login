@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = @current_user.articles.find(params[:id])
+    @article = @current_user.articles.find(session[:user_id])
   end
 
   def new
