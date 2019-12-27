@@ -6,7 +6,7 @@
           <%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
           <!-- <div class="comment_section "> -->
           <!-- <div class="commenter"> -->
-    
+
           <div class="form-group">
             <%= form.label :commenter ,:class=>"sr-only " %>
             <%= form.text_field :commenter ,:class=>"form-control",:placeholder=>"Commenter" %>
@@ -19,7 +19,6 @@
             <%= form.text_field :body ,:class=>"comment_content form-control" ,:placeholder=>"Enter the Comment" %>
 
           </div>
-
 
           <%= form.submit "Create Comment",:class=>"btn btn-primary btn btn-block mybtn btn-primary tx-tfm" %>
           <div></div>

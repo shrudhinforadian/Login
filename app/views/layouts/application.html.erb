@@ -27,45 +27,54 @@
       <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
       <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <style>
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+          margin-bottom: 0;
+          border-radius: 0;
+        }
 
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {
+          height: 450px;
+        }
 
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
+        /* Set gray background color and 100% height */
+        .sidenav {
+          padding-top: 20px;
+          background-color: #f1f1f1;
+          height: 100%;
+        }
 
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    .button-nav{ width:14%;
-      float:left;
-     }
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 35px;
-      }
-      .row.content {height:auto;}
-    }
-    .login-button{ float:right; }
-    .signup-button{float:left;}
-  </style>
+        /* Set black background color, white text and some padding */
+        footer {
+          background-color: #555;
+          color: white;
+          padding: 15px;
+        }
+        .button-nav {
+          width: 14%;
+          float: left;
+        }
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+          .sidenav {
+            height: auto;
+            padding: 35px;
+          }
+          .row.content {
+            height: auto;
+          }
+        }
+        .login-button {
+          float: right;
+        }
+        .signup-button {
+          float: left;
+        }
+      </style>
 
     </head>
     <body>
@@ -75,53 +84,57 @@
           <%if @current_user  && (url[:controller] == "sessions" || url[:controller] == "users")%>
             <div class="nav ">
               <h4 class="text-light"><%= @current_user.email %></h4>
-              </div>
-              <ul class="nav ">
+            </div>
+            <ul class="nav ">
 
+              <h3 ><%= link_to 'Home', welcome_index_path ,:class=>"nav-link active text-success"%></h3>
+
+            </ul>
+            <div class=" button-nav">
+
+              <div class="login-button">
+                <button class="btn btn-info navbar-btn"><%= link_to 'Logout', logout_path ,:class=>"nav-link text-light active"%></button</div>
+              </div>
+              <% elsif   @current_user %>
+                <h4 class="text-light"><%= @current_user.email %></h4>
+
+                <ul class="nav navbar-nav button-nav">
+                  <li class="">
+                    <h3 ><%= link_to 'Home', welcome_index_path ,:class=>"nav-link active text-success"%></h3>
+                  </li>
+
+                </ul>
+                <button class="btn btn-info navbar-btn"><%= link_to 'Logout', logout_path ,:class=>"nav-link text-light active"%></button>
+
+              <% else %>
+                <div class="nav">
+                  <h4 class="text-light">Welcome Guest</h4>
+                </div>
+                <ul class="nav ">
                   <h3 ><%= link_to 'Home', welcome_index_path ,:class=>"nav-link active text-success"%></h3>
-
-              </ul>
-              <div class=" button-nav">
-
-                <div class="login-button"><button class="btn btn-info navbar-btn"><%= link_to 'Logout', logout_path ,:class=>"nav-link text-light active"%></button</div>
-              </div>
-            <% elsif   @current_user %>
-              <h4 class="text-light"><%= @current_user.email %></h4>
-
-              <ul class="nav navbar-nav button-nav">
-                <li class="">
-                  <h3 ><%= link_to 'Home', welcome_index_path ,:class=>"nav-link active text-success"%></h3>
-                </li>
-
-              </ul>
-              <button class="btn btn-info navbar-btn"><%= link_to 'Logout', logout_path ,:class=>"nav-link text-light active"%></button>
-
-            <% else %>
-            <div class="nav">
-              <h4 class="text-light">Welcome Guest</h4>
-              </div>
-              <ul class="nav ">
-                <h3 ><%= link_to 'Home', welcome_index_path ,:class=>"nav-link active text-success"%></h3>
                 </ul>
                 <div class=" button-nav">
 
-                  <div class="signup-button"><button class="btn btn-primary "><%= link_to 'Signup', signup_path ,:class=>"nav-link text-light active"%></button></div>
-                  <div class="login-button"><button class="btn btn-success "><%= link_to 'Login', login_path ,:class=>"nav-link text-light active"%></button></div>
+                  <div class="signup-button">
+                    <button class="btn btn-primary "><%= link_to 'Signup', signup_path ,:class=>"nav-link text-light active"%></button>
+                  </div>
+                  <div class="login-button">
+                    <button class="btn btn-success "><%= link_to 'Login', login_path ,:class=>"nav-link text-light active"%></button>
+                  </div>
                 </div>
-            <% end %>
+              <% end %>
+            </div>
+          </nav>
+
+          <div class="container-fluid" style="margin-top:100px">
+            <div class="user_header ">
+              <% flash.each do |key, value| %>
+                <div class="alert alert-<%= key %>   alert-dismissible fade show" role="alert"><%= value %></div>
+              <% end %>
+              <%= yield %>
+
+            </div>
           </div>
-        </nav>
 
-
-        <div class="container-fluid" style="margin-top:100px">
-          <div class="user_header ">
-            <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %>   alert-dismissible fade show" role="alert"><%= value %></div>
-          <% end %>
-            <%= yield %>
-
-          </div>
-        </div>
-
-      </body>
-    </html>
+        </body>
+      </html>

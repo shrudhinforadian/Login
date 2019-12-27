@@ -1,36 +1,50 @@
 <div class="jumbotron  card-body text-center">
   <div class="container">
-    <div class="lead col-sm-2 sidenav"  >
-    <% if @current_user %>
-      <%= link_to ' New Article', new_article_path ,:class=>"nav-link active text-secondary"%>
+    <div class="lead col-sm-2 sidenav">
+      <% if @current_user %>
+        <%= link_to ' New Article', new_article_path ,:class=>"nav-link active text-secondary"%>
       <% end %>
     </div>
-  <div class=" col-sm-8">
-  <h2 class=" ">MyBlog</h2></div>
-  <div class="lead col-sm-2 sidenav"  >
+    <div class=" col-sm-8">
+      <h2
+        class=" ">MyBlog</h2></div>
+  <div class="
+        lead="lead"
+        col-sm-2="col-sm-2"
+        sidenav"  >
   <% if @current_user %>
-  <%= link_to 'My Articles', articles_path ,:class=>"nav-link active text-secondary"%>
+  <%= link_to 'My Articles', articles_path ,:class=>"
+        nav-link="nav-link"
+        active="active"
+        text-secondary"%>
 
   <% end %>
   </div>
 </div>
 </div>
-<div class="container">
-<div class="col-md-12">
-  <% @articles.each do |article| %>
+<div class="
+        container"="container"">
+        <div class="col-md-12">
+          <% @articles.each do |article| %>
 
-    <h1>  <%=link_to article.title , article_path(article)  ,:class=>"nav-link active text-dark"%><h1>
-    <p class="small">  <%= link_to  article.text.html_safe, article_path(article) ,:class=>"nav-link active text-secondary" %></p>
-    </div>
-    <div>
-    <p class="small text-muted"> Created By <% @users.each do |user| %>
-      <% if article.user_id == user.id %>
-        <%= user.email %>
-        <% end %>
-        <% end %>
-      &nbsp;  On <%= article.created_at%>
-      </p>
-    <hr>
-  <% end %>
+            <h1>
+              <%=link_to article.title , article_path(article) ,:class=>"nav-link active text-dark"%>
+              <h1>
+                <p class="small">
+                  <%= link_to article.text.html_safe, article_path(article) ,:class=>"nav-link active text-secondary" %></p>
+              </div>
+              <div>
+                <p class="small text-muted">
+                  Created By
+                  <% @users.each do |user| %>
+                    <% if article.user_id == user.id %>
+                      <%= user.email %>
+                    <% end %>
+                  <% end %>
+                  &nbsp; On
+                  <%= article.created_at%>
+                </p>
+                <hr>
+              <% end %>
 
-</div>
+            </div>
