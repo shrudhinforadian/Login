@@ -1,37 +1,40 @@
-<div class="new_article"><h1>New article</h1>
-</div>
-<%= form_with model: @article, local: true do |form| %>
-
-<% if @article.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(@article.errors.count, "error") %>
-      prohibited this article from being saved:
-    </h2>
-    <ul>
-      <% @article.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
+<div class="container">
+  <div class="new_article">
+    <h1>New article</h1>
   </div>
-<% end %>
-<div class="new_articles">
-<p >
-  <%= form.label :title %>
-  <%= form.text_field :title ,:class=>"input_title"%>
-</p>
+  <div class="form-horizontal">
+    <%= form_with model: @article, local: true do |form| %>
 
-<p>
-  <%= form.label :text %><br>
-  <%= form.text_area :text ,:id => "mytextarea"%>
-</p>
+    <% if @article.errors.any? %>
+      <div id="error_explanation " class="alert-danger alert-dismissible">
+        <h2>
+          <%= pluralize(@article.errors.count, "error") %>
+          prohibited this article from being saved:
+        </h2>
+        <ul>
+          <% @article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="new_articles form-group">
+      <p >
+        <%= form.label :title ,:class=>"control-label "%>
+        <%= form.text_field :title ,:class=>"input_title form-control",:placeholder=>"Enter the Title" ,:id=>"focusedInput"%>
+      </p>
 
-<p>
-  <%= form.submit %>
-</p>
+      <p>
+        <%= form.label :text %><br>
+        <%= form.text_area :text ,:id => "mytextarea",:placeholder=>"Enter contents"%>
+      </p>
+
+      <p >
+        <%= form.submit "Submit Article",:class=>"btn btn-success btn btn-block mybtn btn-primary tx-tfm" %>
+      </p>
+    </div>
+  <% end %>
+
 </div>
-<% end %>
-
-
-
 <%= link_to 'Back', articles_path %>
+</div>

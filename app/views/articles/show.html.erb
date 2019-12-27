@@ -1,25 +1,40 @@
-<div class="show_article">
-  <div class="title_contents">
-    <p>
-      <strong>Title:</strong>
-      <%= @article.title %>
-    </p>
+<div class="container ">
+  <div class="">
+    <div class="show_article  mx-auto">
+      <div class="logo mb-3"><br>
+        <div class="  ">
+          <h1 >
 
-    <p>
-      <strong>Text:</strong>
-      <%= @article.text %>
-    </p>
-    <%= link_to 'Edit', edit_article_path(@article) %>
+            <%= @article.title %>
+          </h1>
 
-    <%= link_to 'Back', articles_path %>
+          <p>
+
+            <%= @article.text.html_safe %>
+          </p>
+        </div>
+      </div>
+
+      <div class="comment_section logo mb-3 col-md-12 ">
+        <h4>Comments</h4>
+        <%= render @article.comments %>
+        <br>
+        <h4 >Add a comment</h4>
+        <%= render 'comments/form' %>
+
+      </div>
+    </div
+   </div>
+   <div class="title_contents  text-center logo mb-3">
+     <ul class="pager">
+
+       <% if @current_user && @current_user.id == @article.user_id %>
+         <li><%= link_to 'Edit', edit_article_path(@article) %></li>
+
+         <li><%= link_to 'Back', articles_path %></li>
+       <% else %>
+         <li><%= link_to 'Back', welcome_index_path %></li>
+       <% end %>
+     </ul>
+   </div>
   </div>
-  <div class="comment_section">
-    <h4>Comments</h4>
-    <%= render @article.comments %>
-
-    <h4 align="center">Add a comment:</h4>
-    <%= render 'comments/form' %>
-
-  </div>
-
-</div>

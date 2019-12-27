@@ -4,7 +4,7 @@
   <html>
     <head>
       <title>Blog</title>
-       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
       <%= javascript_include_tag "application" %>
       <%= csrf_meta_tag %>
       <script src="https://cdn.tiny.cloud/1/v4qiu77vllo203hcz04av8jxkqq763tq7vl5yeoh1d9wfrss/tinymce/5/tinymce.min.js"></script>
@@ -13,33 +13,115 @@
         tinymce.init({selector: '#mytextarea'});
       </script>
       <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+      <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+      <!-- Bootstrap core CSS -->
+      <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+      <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <!-- Custom fonts for this template -->
+      <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
+      <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    .button-nav{ width:14%;
+      float:left;
+     }
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 35px;
+      }
+      .row.content {height:auto;}
+    }
+    .login-button{ float:right; }
+    .signup-button{float:left;}
+  </style>
+
     </head>
     <body>
-      <div id="container">
-        <div id="user_header">
+      <nav class="navbar  card-body bg-dark navbar-fixed-top" id="mainNav">
+        <div class="container-fluid ">
+
           <%if @current_user  && (url[:controller] == "sessions" || url[:controller] == "users")%>
+            <div class="nav ">
+              <h4 class="text-light"><%= @current_user.email %></h4>
+              </div>
+              <ul class="nav ">
 
+                  <h3 ><%= link_to 'Home', welcome_index_path ,:class=>"nav-link active text-success"%></h3>
 
-              <% elsif   @current_user%>
+              </ul>
+              <div class=" button-nav">
 
-                <%= @current_user.email %>
-                <%= link_to "Log Out", logout_path %>
-              <% else %>
-                <%= link_to "Sign Up", signup_path %>
-                or
-                <%= link_to "Log In", login_path %>
-              <% end %>
-            </div>
+                <div class="login-button"><button class="btn btn-info navbar-btn"><%= link_to 'Logout', logout_path ,:class=>"nav-link text-light active"%></button</div>
+              </div>
+            <% elsif   @current_user %>
+              <h4 class="text-light"><%= @current_user.email %></h4>
 
-            <% flash.each do |name, msg| %>
-              <%= content_tag :div, msg, id: "flash_#{name}" %>
+              <ul class="nav navbar-nav button-nav">
+                <li class="">
+                  <h3 ><%= link_to 'Home', welcome_index_path ,:class=>"nav-link active text-success"%></h3>
+                </li>
+
+              </ul>
+              <button class="btn btn-info navbar-btn"><%= link_to 'Logout', logout_path ,:class=>"nav-link text-light active"%></button>
+
+            <% else %>
+            <div class="nav">
+              <h4 class="text-light">Welcome Guest</h4>
+              </div>
+              <ul class="nav ">
+                <h3 ><%= link_to 'Home', welcome_index_path ,:class=>"nav-link active text-success"%></h3>
+                </ul>
+                <div class=" button-nav">
+
+                  <div class="signup-button"><button class="btn btn-primary "><%= link_to 'Signup', signup_path ,:class=>"nav-link text-light active"%></button></div>
+                  <div class="login-button"><button class="btn btn-success "><%= link_to 'Login', login_path ,:class=>"nav-link text-light active"%></button></div>
+                </div>
             <% end %>
-
-            <%= yield %>
           </div>
-        </body>
-      </html>
+        </nav>
+
+
+        <div class="container-fluid" style="margin-top:100px">
+          <div class="user_header ">
+            <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>   alert-dismissible fade show" role="alert"><%= value %></div>
+          <% end %>
+            <%= yield %>
+
+          </div>
+        </div>
+
+      </body>
+    </html>

@@ -23,5 +23,5 @@ resources :users do
  get '/logout' => 'sessions#destroy'
  get '/signup' => 'users#new'
  post '/users' => 'users#create'
-  root :to => "users#new"
+  root :to => "welcome#index"
 end

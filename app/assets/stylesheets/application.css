@@ -28,3 +28,16 @@
 #user_header {
   color: lightgreen;
 }
+th{
+  align:center;
+}
+.login-button{
+  padding: 10px;
+}
+.navbar{
+  /* margin-bottom: 0px; */
+}
+/* .top-navbar-right{
+  width:25%;
+  float:right;
+} */
