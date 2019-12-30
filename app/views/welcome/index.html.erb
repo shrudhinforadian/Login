@@ -2,34 +2,26 @@
   <div class="container">
     <div class="lead col-sm-2 sidenav">
       <% if @current_user %>
-        <%= link_to ' New Article', new_article_path ,:class=>"nav-link active text-secondary"%>
+        <h5><%= link_to ' New Article', new_article_path ,:class=>"nav-link active text-secondary"%></h5>
       <% end %>
     </div>
     <div class=" col-sm-8">
-      <h2
-        class=" ">MyBlog</h2></div>
-  <div class="
-        lead="lead"
-        col-sm-2="col-sm-2"
-        sidenav"  >
+      <h3 >MyBlog</h3></div>
+  <div class="  lead col-sm-2 sidenav"  >
   <% if @current_user %>
-  <%= link_to 'My Articles', articles_path ,:class=>"
-        nav-link="nav-link"
-        active="active"
-        text-secondary"%>
+  <h5><%= link_to 'My Articles', articles_path ,:class=>"nav-link active text-secondary"%></h5>
 
   <% end %>
   </div>
 </div>
 </div>
-<div class="
-        container"="container"">
+<div class="container">
         <div class="col-md-12">
           <% @articles.each do |article| %>
 
-            <h1>
+            <h2>
               <%=link_to article.title , article_path(article) ,:class=>"nav-link active text-dark"%>
-              <h1>
+              </h2>
                 <p class="small">
                   <%= link_to article.text.html_safe, article_path(article) ,:class=>"nav-link active text-secondary" %></p>
               </div>

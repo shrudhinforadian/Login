@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :seararticle
-
+  before_action :searcharticle
+  before_action :searchcomment, only: [:show, :destroy]
+  #creating new comment
   def create
-    @comment = @article.comments.create(comment_params)
+    @comment = @article.comments.build(comment_params)
     if @comment.save
       flash[:success] = 'Comment inserted Successfully'
       redirect_to article_path(@article)
@@ -13,37 +14,27 @@ class CommentsController < ApplicationController
       redirect_to article_path(@article)
     end
   end
-
+  #destroys selected comment
   def destroy
-    searchcomment
     if @comment.destroy
-
-      redirect_to article_path(@article) , flash: {info: 'Comment Deleted Successfully'}
+      redirect_to article_path(@article), flash: { info: 'Comment Deleted Successfully' }
     else
-
-      redirect_to article_path(@article), flash: {danger: 'Cannot Delete the comment'}
+      redirect_to article_path(@article), flash: { danger: 'Cannot Delete the comment' }
     end
   end
-
+  #showing comment
   def show
-    searchcomment
-    if @comment.destroy
-
-      redirect_to article_path(@article), flash: {info: 'Comment Deleted Successfully'}
-    else
-
-      redirect_to article_path(@article), flash:{danger: 'Cannot Delete the comment'}
-    end
-end
+    redirect_to article_path(@article)
+  end
 
   private
-
+  #finding all comments related to the article
   def searchcomment
-    @comment = @article.comments.find_by(params[:id])
+    @comment = @article.comments.find_by_id(params[:id])
   end
-
-  def seararticle
-    @article = Article.find(params[:article_id])
+  #searching articles
+  def searcharticle
+    @article = Article.find_by_id(params[:article_id])
   end
 
   def comment_params

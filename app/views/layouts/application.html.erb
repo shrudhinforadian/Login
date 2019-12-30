@@ -83,7 +83,7 @@
 
           <%if @current_user  && (url[:controller] == "sessions" || url[:controller] == "users")%>
             <div class="nav ">
-              <h4 class="text-light"><%= @current_user.email %></h4>
+              <h5 class="text-light"><%= @current_user.email %></h5>
             </div>
             <ul class="nav ">
 
@@ -96,7 +96,7 @@
                 <button class="btn btn-info navbar-btn"><%= link_to 'Logout', logout_path ,:class=>"nav-link text-light active"%></button</div>
               </div>
               <% elsif   @current_user %>
-                <h4 class="text-light"><%= @current_user.email %></h4>
+                <h5 class="text-light"><%= @current_user.email %></h5>
 
                 <ul class="nav navbar-nav button-nav">
                   <li class="">

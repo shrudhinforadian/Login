@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  # rescue_from Exception, with: -> { render_404 }
+
   before_action :authorize
   # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   # def record_not_found
@@ -9,10 +9,11 @@ class ApplicationController < ActionController::Base
   # end
 
   private
-
+  #identifying the current logged in user
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
+
   helper_method :current_user
 
   def authorize
